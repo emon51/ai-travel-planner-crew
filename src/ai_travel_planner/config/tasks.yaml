@@ -1,0 +1,42 @@
+research_task:
+  description: >
+    Search the web for {destination} travel information including top attractions,
+    best time to visit, local culture, and travel tips for {start_date} to {end_date}.
+    Preferences: {preferences}.
+  expected_output: >
+    A structured destination overview with attractions, highlights, and travel tips.
+  agent: destination_researcher
+
+budget_task:
+  description: >
+    Estimate a detailed budget breakdown for {destination} covering accommodation,
+    food, transport, and activities for the trip from {start_date} to {end_date}.
+    Total budget is {budget}. Use calculator logic to ensure totals are accurate.
+  expected_output: >
+    A budget breakdown with estimated costs per category and a total. Flag if over budget.
+  agent: budget_planner
+
+itinerary_task:
+  description: >
+    Using the destination research and budget, create a realistic day-wise itinerary
+    for {destination} from {start_date} to {end_date} with preferences: {preferences}.
+    Avoid scheduling conflicts and ensure activities fit the budget.
+  expected_output: >
+    A complete day-by-day itinerary in markdown format.
+  agent: itinerary_designer
+  context:
+    - research_task
+    - budget_task
+
+validation_task:
+  description: >
+    Review the full travel plan including destination overview, budget breakdown,
+    and itinerary. Verify budget alignment, logical consistency, and feasibility.
+    List any risks or assumptions made.
+  expected_output: >
+    A validation summary with budget status, assumptions, and risk factors in markdown.
+  agent: validation_agent
+  context:
+    - research_task
+    - budget_task
+    - itinerary_task
