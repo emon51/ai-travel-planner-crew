@@ -1,7 +1,9 @@
 import json
 import logging
+from crewai import Crew
 from ai_travel_planner.crew import AiTravelPlanner
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
 
@@ -25,17 +27,28 @@ def run():
     inputs = get_user_input()
     log.info(f"Starting travel planner for: {inputs['destination']}")
 
-    result = AiTravelPlanner().crew().kickoff(inputs=inputs)
+    planner = AiTravelPlanner()
+    crew: Crew = planner.crew()
+    result = crew.kickoff(inputs=inputs)
+
+    # Extract each task output individually
+    tasks_output = crew.tasks
+    research_out = str(tasks_output[0].output) if tasks_output[0].output else ""
+    budget_out   = str(tasks_output[1].output) if tasks_output[1].output else ""
+    itinerary_out = str(tasks_output[2].output) if tasks_output[2].output else ""
+    validation_out = str(tasks_output[3].output) if tasks_output[3].output else ""
 
     output = {
-        "destination": inputs["destination"],
+        "travel_plan": f"Travel Plan: {inputs['destination']}",
         "travel_dates": f"{inputs['start_date']} to {inputs['end_date']}",
-        "budget": inputs["budget"],
-        "travel_plan": str(result),
+        "destination_overview": research_out,
+        "budget_breakdown": budget_out,
+        "day_wise_itinerary": itinerary_out,
+        "validation_summary": validation_out,
     }
 
     print("\n=== Travel Plan Output ===\n")
-    print(output["travel_plan"])
+    print(json.dumps(output, indent=2))
 
     with open("travel_plan_output.json", "w") as f:
         json.dump(output, f, indent=2)
