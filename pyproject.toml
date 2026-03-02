@@ -1,7 +1,7 @@
 [project]
-name = "ai_travel_planner"
+name = "ai-travel-planner-crew"
 version = "0.1.0"
-description = "ai_travel_planner using crewAI"
+description = "ai-travel-planner-crew using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
@@ -12,12 +12,12 @@ dependencies = [
 ]
 
 [project.scripts]
-ai_travel_planner = "ai_travel_planner.main:run"
-run_crew = "ai_travel_planner.main:run"
-train = "ai_travel_planner.main:train"
-replay = "ai_travel_planner.main:replay"
-test = "ai_travel_planner.main:test"
-run_with_trigger = "ai_travel_planner.main:run_with_trigger"
+ai_travel_planner = "ai-travel-planner-crew.main:run"
+run_crew = "ai-travel-planner-crew.main:run"
+train = "ai-travel-planner-crew.main:train"
+replay = "ai-travel-planner-crew.main:replay"
+test = "ai-travel-planner-crew.main:test"
+run_with_trigger = "ai-travel-planner-crew.main:run_with_trigger"
 
 [build-system]
 requires = ["hatchling"]

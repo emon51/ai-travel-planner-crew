@@ -95,7 +95,7 @@ crewai --version
 ### 3. Clone the Repository
 ```bash
 git clone https://github.com/emon51/ai-travel-planner-crew.git
-cd ai_travel_planner
+cd ai-travel-planner-crew
 ```
 
 ---
@@ -186,7 +186,7 @@ After a successful run, two files are auto-generated locally (not tracked in git
 
 ## Project Structure
 ```
-ai_travel_planner/
+ai-travel-planner-crew/           # Root directory
 ├── .env                          # API keys (not tracked)
 ├── .gitignore
 ├── pyproject.toml
