@@ -108,10 +108,13 @@ crewai install
 This installs all dependencies defined in `pyproject.toml`:
 ```toml
 dependencies = [
+    "apscheduler>=3.11.2",
     "crewai-tools>=1.9.3",
     "crewai[google-genai,tools]==1.9.3",
     "fastapi>=0.133.1",
+    "fastapi-sso>=0.21.0",
     "litellm>=1.75.3",
+    "pydantic[email]>=2.11.10",
 ]
 ```
 
@@ -193,6 +196,7 @@ ai-travel-planner-crew/           # Root directory
 ├── analysis.md                   # Mandatory analysis section
 ├── architecture.md               # Architecture diagram
 ├── README.md
+├── uv.lock
 └── src/
     └── ai_travel_planner/
         ├── main.py               # Entry point, output generation
@@ -202,6 +206,7 @@ ai-travel-planner-crew/           # Root directory
         └── config/
             ├── agents.yaml       # Agent definitions
             └── tasks.yaml        # Task definitions with context chaining
+
 ```
 
 ---
